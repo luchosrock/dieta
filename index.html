@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bootstrap 101 Template</title>
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/docs.min.css" rel="stylesheet">
+	<link href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<link href="css/extras.css" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+  </head>
+  <body>
+  	<div class="container">
+  	<div class="jumbotron">
+  		<div class="row">
+  			<div class="col-md-8">
+  			<h3>Busca un alimento</h3>
+  			<form role="form" class="form-horizontal">
+  					<input type="text" class="form-control input-lg" id="alimento">
+  			</form>
+  			</div>
+  		</div>
+  		<h2><span id="resultado"></span></h2>
+  		<h3><span id="comentario"></span></h3>
+  	</div>
+  	</div>
+  	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  	<!-- Include all compiled plugins (below), or include individual files as needed -->
+  	<script src="js/bootstrap.min.js"></script>
+  	<script src="js/jquery.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+  	<script src="js/holder.js"></script>
+  	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+  	<script src="js/localize.js"></script>
+  	<script src="js/bootpag.min.js"></script>
+  	<script src="js/extras.js"></script>
+  	<script src="js/modernizr-latest.js"></script>
+
+  	<script>
+  		var availableTags = [
+  		{permitido: "1",value: "cochayuyo", comentarios: ""},
+  		{permitido: "1",value: "luche", comentarios: ""},
+  		{permitido: "1",value: "vacuno desgrasado", comentarios: "solamente a la parrilla o a la plancha con declive (no en olla ni sarten), para evitar la reabsorcion de la grasa en fusion"},
+		{permitido: "1",value: "equino desgrasado", comentarios: "solamente a la parrilla o a la plancha con declive (no en olla ni sarten), para evitar la reabsorcion de la grasa en fusion"},
+		{permitido: "1",value: "charqui asado (para desgrasarlo)", comentarios: ""},
+		{permitido: "1",value: "rana", comentarios: ""},
+		{permitido: "1",value: "conejo", comentarios: "sin procesarlo previamente con vinagre"},
+		{permitido: "1",value: "pollo", comentarios: "extrayendo o separando (antes de la cocción), la piel con su grasa subyacente"},
+		{permitido: "1",value: "pavo", comentarios: "extrayendo o separando (antes de la cocción), la piel con su grasa subyacente"},
+		{permitido: "0",value: "ganzo", comentarios: ""},
+		{permitido: "0",value: "pato", comentarios: ""},
+		{permitido: "0",value: "vísceras, rabadilla y enjundias (grasa interna del ave)", comentarios: ""},
+		{permitido: "1",value: "pescado cocido o asado", comentarios: ""}, 
+		{permitido: "0",value: "pescado frito", comentarios: ""},
+		{permitido: "0",value: "arenque", comentarios: ""},
+		{permitido: "0",value: "salmon", comentarios: ""},
+		{permitido: "0",value: "leche", comentarios: "descremada sin lactosa"},
+		{permitido: "1",value: "huevo", comentarios: "sin yema"},
+		{permitido: "1",value: "quesillo", comentarios: "descremado"},
+		{permitido: "1",value: "quesillo", comentarios: "descremado"},
+		{permitido: "0",value: "arroz", comentarios: ""},
+		
+	 ];
+ 
+    $( "#alimento" ).autocomplete({
+      minLength: 0,
+      source: availableTags,
+      focus: function( event, ui ) {
+        $( "#alimento" ).val( ui.item.value );
+        return false;
+      },
+      select: function( event, ui ) {
+      	console.log(ui.item.permitido);
+        //$( "#alimento" ).val( ui.item.value );
+        if(ui.item.permitido == "1"){
+        	$('#resultado').removeClass();
+        	$('#resultado').addClass('label label-success');
+        	$('#resultado').text('Permitido :)');
+        	$('#comentario').text(ui.item.comentarios);
+        }
+        else{
+        	$('#resultado').removeClass();
+        	$('#resultado').addClass('label label-danger');
+        	$('#resultado').text('No permitido  :(');	
+        }
+        
+        return false;
+      } 
+	  });
+  	</script>
+  </body>
+  </html>
